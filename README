@@ -1,0 +1,359 @@
+# System Logistyki Militarnej
+
+Nowoczesny system zarządzania logistyką militarną z integracją Google Maps, automatyczną optymalizacją tras i monitoringiem w czasie rzeczywistym.
+
+## 🚀 Funkcjonalności
+
+### 🗺️ Planowanie i Optymalizacja Tras
+- **Automatyczna optymalizacja tras** z uwzględnieniem ograniczeń infrastrukturalnych
+- **Integracja z Google Maps API** dla dokładnych danych geograficznych
+- **Analiza ograniczeń** - automatyczne omijanie mostów/tuneli z ograniczeniami wagi/wysokości
+- **Wielokryterialna optymalizacja** - czas, dystans, koszty paliwa
+
+### 🚛 Zarządzanie Transportami
+- **Zestawy transportowe** - definiowanie kombinacji ciężarówka + ładunek
+- **Monitoring w czasie rzeczywistym** - śledzenie lokalizacji i statusu transportów
+- **Zarządzanie flotą** - dostępność, harmonogramowanie, konserwacja
+- **Historia transportów** - kompletne logi i statystyki
+
+### 🤖 Automatyczne Alerty i Rozwiązywanie Problemów
+- **Inteligentne alerty** - automatyczne wykrywanie problemów ruchu/infrastruktury
+- **Auto-reoptymalizacja** - system automatycznie proponuje alternatywne trasy
+- **Powiadomienia wielokanałowe** - email, SMS, push notifications
+- **Eskalacja alertów** - automatyczne przekazywanie według hierarchii
+
+### 📊 Analityka i Raporty
+- **Dashboard w czasie rzeczywistym** - kluczowe metryki i KPI
+- **Raporty efektywności** - analiza czasu dostaw, kosztów, wykorzystania floty
+- **Eksport danych** - PDF, Excel, CSV dla różnych odbiorców
+- **Trendy i prognozy** - analiza historyczna i przewidywanie zapotrzebowania
+
+### 🔐 Bezpieczeństwo i Zarządzanie
+- **System ról i uprawnień** - admin, operator, planista
+- **Uwierzytelnianie wieloskładnikowe** - dodatkowa warstwa bezpieczeństwa
+- **Audit trail** - kompletne logi aktywności użytkowników
+- **Szyfrowanie danych** - ochrona wrażliwych informacji
+
+## 🛠️ Technologie
+
+### Frontend
+- **React 18** - nowoczesna biblioteka UI z Hooks
+- **Zustand** - lekki state management
+- **Tailwind CSS** - utility-first CSS framework
+- **Lucide React** - zestaw ikon SVG
+- **React Router** - routing po stronie klienta
+- **React Query** - cache i synchronizacja danych
+
+### Mapy i Geolokalizacja
+- **Google Maps JavaScript API** - zaawansowane funkcje mapowe
+- **Google Directions API** - planowanie i optymalizacja tras
+- **Google Places API** - geokodowanie i wyszukiwanie miejsc
+- **Geolocation API** - śledzenie lokalizacji w czasie rzeczywistym
+
+### Dodatkowe Biblioteki
+- **Axios** - HTTP client
+- **Date-fns** - manipulacja datami
+- **UUID** - generowanie unikalnych identyfikatorów
+- **Papaparse** - parsowanie plików CSV
+
+## 📦 Instalacja
+
+### Wymagania
+- **Node.js** >= 16.0.0
+- **npm** >= 8.0.0 lub **yarn** >= 1.22.0
+- **Google Maps API Key** z włączonymi usługami:
+  - Maps JavaScript API
+  - Directions API
+  - Places API
+  - Geocoding API
+
+### Kroki instalacji
+
+1. **Klonowanie repozytorium**
+```bash
+git clone https://github.com/your-org/military-logistics-system.git
+cd military-logistics-system
+```
+
+2. **Instalacja zależności**
+```bash
+npm install
+# lub
+yarn install
+```
+
+3. **Konfiguracja zmiennych środowiskowych**
+```bash
+cp .env.example .env
+```
+
+Uzupełnij plik `.env`:
+```env
+REACT_APP_GOOGLE_MAPS_API_KEY=your_google_maps_api_key_here
+REACT_APP_API_URL=http://localhost:8080/api
+REACT_APP_WS_URL=ws://localhost:8080/ws
+```
+
+4. **Uruchomienie w trybie development**
+```bash
+npm start
+# lub
+yarn start
+```
+
+Aplikacja będzie dostępna pod adresem `http://localhost:3000`
+
+## 🚀 Deployment
+
+### Build produkcyjny
+```bash
+npm run build
+# lub
+yarn build
+```
+
+### Zmienne środowiskowe dla produkcji
+```env
+REACT_APP_ENV=production
+REACT_APP_API_URL=https://api.yourdomain.com
+REACT_APP_GOOGLE_MAPS_API_KEY=your_production_api_key
+REACT_APP_SENTRY_DSN=your_sentry_dsn_for_error_tracking
+```
+
+### Docker
+```bash
+# Build image
+docker build -t military-logistics-frontend .
+
+# Run container
+docker run -p 3000:80 military-logistics-frontend
+```
+
+## 👥 Użytkownicy i Role
+
+### Administrator
+- **Login:** `admin` / **Hasło:** `admin123`
+- **Uprawnienia:** Pełny dostęp do wszystkich funkcji systemu
+- **Funkcje:** Zarządzanie użytkownikami, konfiguracja systemu, wszystkie raporty
+
+### Operator Logistyczny
+- **Login:** `operator` / **Hasło:** `operator123`
+- **Uprawnienia:** Monitoring transportów, zarządzanie alertami
+- **Funkcje:** Panel operatora, śledzenie transportów w czasie rzeczywistym
+
+### Planista Tras
+- **Login:** `planner` / **Hasło:** `planner123`
+- **Uprawnienia:** Planowanie tras, zarządzanie zestawami transportowymi
+- **Funkcje:** Narzędzia planowania, optymalizacja tras, zarządzanie flotą
+
+## 📁 Struktura Projektu
+
+```
+src/
+├── components/           # Komponenty React
+│   ├── common/          # Komponenty współdzielone
+│   ├── ui/              # Komponenty UI (Button, Input, etc.)
+│   ├── DashboardPage.js # Strona główna dashboard
+│   ├── LoginPage.js     # Strona logowania
+│   ├── ReportsPage.js   # Strona raportów
+│   └── SettingsPage.js  # Strona ustawień
+├── contexts/            # React Contexts
+│   ├── AuthContext.js   # Kontekst uwierzytelniania
+│   └── NotificationContext.js # Kontekst powiadomień
+├── hooks/               # Custom React Hooks
+│   └── index.js         # Zbiór wszystkich hooks
+├── services/            # Serwisy API
+│   └── api.js           # Konfiguracja i wywołania API
+├── store/               # State management (Zustand)
+│   └── useStore.js      # Główny store aplikacji
+├── utils/               # Funkcje pomocnicze
+│   └── helpers.js       # Utilities i helpers
+├── config/              # Konfiguracja
+│   └── googleMaps.js    # Konfiguracja Google Maps
+├── App.js               # Główny komponent aplikacji
+├── index.js             # Entry point
+└── index.css            # Style globalne
+```
+
+## 🔧 Konfiguracja
+
+### Google Maps API
+1. Utwórz projekt w [Google Cloud Console](https://console.cloud.google.com/)
+2. Włącz następujące API:
+   - Maps JavaScript API
+   - Directions API
+   - Places API
+   - Geocoding API
+3. Utwórz klucz API i skonfiguruj ograniczenia
+4. Dodaj klucz do `.env` jako `REACT_APP_GOOGLE_MAPS_API_KEY`
+
+### Konfiguracja powiadomień
+```javascript
+// src/config/notifications.js
+export const NOTIFICATION_SETTINGS = {
+  email: {
+    enabled: true,
+    templates: {
+      alert: 'alert-template',
+      completion: 'completion-template'
+    }
+  },
+  push: {
+    enabled: true,
+    vapidKey: 'your-vapid-public-key'
+  },
+  sms: {
+    enabled: false,
+    provider: 'twilio'
+  }
+};
+```
+
+## 📊 Monitorowanie i Analityka
+
+### Metryki kluczowe (KPI)
+- **Punktualność dostaw** - % transportów dostarczonych na czas
+- **Wykorzystanie floty** - % czasu aktywnego wykorzystania pojazdów
+- **Efektywność paliwowa** - średnie zużycie paliwa na 100km
+- **Czas rozwiązywania alertów** - średni czas od wykrycia do rozwiązania
+- **Optymalizacja tras** - oszczędności dzięki automatycznej reoptymalizacji
+
+### Integracje monitoringu
+- **Google Analytics** - analiza użytkowania interfejsu
+- **Sentry** - monitorowanie błędów i wydajności
+- **Custom dashboards** - metryki biznesowe w czasie rzeczywistym
+
+## 🧪 Testowanie
+
+### Uruchomienie testów
+```bash
+# Wszystkie testy
+npm test
+
+# Testy w trybie watch
+npm run test:watch
+
+# Coverage report
+npm run test:coverage
+
+# Testy E2E
+npm run test:e2e
+```
+
+### Typy testów
+- **Unit tests** - testowanie izolowanych komponentów i funkcji
+- **Integration tests** - testowanie interakcji między komponentami
+- **E2E tests** - testowanie pełnych scenariuszy użytkownika
+
+## 🔄 CI/CD
+
+### GitHub Actions Workflow
+```yaml
+name: CI/CD Pipeline
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+      - run: npm install
+      - run: npm test
+      - run: npm run build
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - run: echo "Deploy to production"
+```
+
+## 🤝 Kontrybucja
+
+### Jak współtworzyć
+1. **Fork** repozytorium
+2. Utwórz **feature branch** (`git checkout -b feature/AmazingFeature`)
+3. **Commit** zmiany (`git commit -m 'Add some AmazingFeature'`)
+4. **Push** do branch (`git push origin feature/AmazingFeature`)
+5. Otwórz **Pull Request**
+
+### Standardy kodu
+- **ESLint** - linting JavaScript/React
+- **Prettier** - formatowanie kodu
+- **Conventional Commits** - standardized commit messages
+- **Husky** - pre-commit hooks
+
+### Code Review Process
+- Wszystkie PR wymagają review od co najmniej 1 osoby
+- Automatyczne testy muszą przechodzić
+- Coverage testów musi być ≥ 80%
+
+## 📋 Roadmap
+
+### Q1 2025
+- [ ] **Moduł zarządzania paliwem** - monitoring zużycia i kosztów
+- [ ] **Integracja z systemami ERP** - synchronizacja danych logistycznych
+- [ ] **Aplikacja mobilna** - React Native dla kierowców
+- [ ] **Advanced analytics** - ML dla przewidywania zapotrzebowania
+
+### Q2 2025
+- [ ] **API publiczne** - integracja z systemami partnerów
+- [ ] **Moduł bezpieczeństwa** - enhanced monitoring i alerting
+- [ ] **Wielojęzyczność** - wsparcie dla języka angielskiego
+- [ ] **Offline mode** - działanie bez połączenia internetowego
+
+### Q3 2025
+- [ ] **IoT integration** - sensory w pojazdach i ładunkach
+- [ ] **Blockchain** - niezmienialny audit trail
+- [ ] **AR/VR** - wizualizacja 3D tras i ładunków
+- [ ] **Edge computing** - przetwarzanie danych lokalnie
+
+## 📞 Wsparcie
+
+### Dokumentacja
+- **Wiki:** [GitHub Wiki](https://github.com/your-org/military-logistics-system/wiki)
+- **API Docs:** [Swagger Documentation](https://api.yourdomain.com/docs)
+- **User Manual:** [PDF Download](https://docs.yourdomain.com/user-manual.pdf)
+
+### Kontakt
+- **Email:** support@yourdomain.com
+- **Slack:** #military-logistics-support
+- **Issues:** [GitHub Issues](https://github.com/your-org/military-logistics-system/issues)
+- **Emergency:** +48 123 456 789 (24/7)
+
+### Szkolenia
+- **Szkolenie administratorów** - 2 dni, certyfikacja
+- **Szkolenie operatorów** - 1 dzień, hands-on
+- **Webinary** - co miesiąc, nowe funkcjonalności
+
+## 📄 Licencja
+
+Ten projekt jest licencjonowany na warunkach licencji MIT - zobacz plik [LICENSE](LICENSE) dla szczegółów.
+
+## 🙏 Podziękowania
+
+- **Google Maps Platform** - za doskonałe API mapowe
+- **React Team** - za fantastyczną bibliotekę
+- **Tailwind CSS** - za utility-first CSS framework
+- **Społeczność Open Source** - za niezliczone inspiracje
+
+---
+
+**Wersja:** 1.0.0
+**Ostatnia aktualizacja:** Styczeń 2025
+**Kompatybilność:** Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
+
+## 📈 Statystyki Projektu
+
+![GitHub stars](https://img.shields.io/github/stars/your-org/military-logistics-system)
+![GitHub forks](https://img.shields.io/github/forks/your-org/military-logistics-system)
+![GitHub issues](https://img.shields.io/github/issues/your-org/military-logistics-system)
+![GitHub license](https://img.shields.io/github/license/your-org/military-logistics-system)
+![Build status](https://img.shields.io/github/workflow/status/your-org/military-logistics-system/CI)
+![Coverage](https://img.shields.io/codecov/c/github/your-org/military-logistics-system)
+
+Konta użytkowników:
+
+Admin: admin / admin123
+Operator: operator / operator123
+Planista: planner / planner123

@@ -1,0 +1,179 @@
+# 🚀 Szybki Start - System Logistyki Militarnej
+
+## 1. Instalacja z npm
+
+```bash
+# Sklonuj repozytorium
+git clone https://github.com/your-org/military-logistics-system.git
+cd military-logistics-system
+
+# Zainstaluj zależności
+npm install
+
+# Skopiuj i skonfiguruj zmienne środowiskowe
+cp .env.example .env
+
+# Edytuj .env i dodaj swój Google Maps API Key
+# REACT_APP_GOOGLE_MAPS_API_KEY=your_api_key_here
+
+# Uruchom aplikację w trybie development
+npm start
+```
+
+Aplikacja będzie dostępna pod adresem: http://localhost:3000
+
+## 2. Instalacja z Docker
+
+```bash
+# Sklonuj repozytorium
+git clone https://github.com/your-org/military-logistics-system.git
+cd military-logistics-system
+
+# Uruchom za pomocą Docker Compose
+docker-compose up -d
+
+# Sprawdź status kontenerów
+docker-compose ps
+```
+
+Aplikacja będzie dostępna pod adresem: http://localhost:3000
+
+## 3. Konfiguracja Google Maps API
+
+### Wymagane API:
+- Maps JavaScript API
+- Directions API
+- Places API
+- Geocoding API
+
+### Kroki konfiguracji:
+1. Idź do [Google Cloud Console](https://console.cloud.google.com/)
+2. Utwórz nowy projekt lub wybierz istniejący
+3. Włącz wymagane API w sekcji "APIs & Services"
+4. Utwórz credentials (API Key)
+5. Skonfiguruj ograniczenia API Key (opcjonalne ale zalecane)
+6. Dodaj klucz do pliku `.env`
+
+```env
+REACT_APP_GOOGLE_MAPS_API_KEY=AIzaSyB_your_actual_api_key_here
+```
+
+## 4. Testowe konta użytkowników
+
+### Administrator
+- **Login:** `admin`
+- **Hasło:** `admin123`
+- **Uprawnienia:** Pełny dostęp
+
+### Operator
+- **Login:** `operator`
+- **Hasło:** `operator123`
+- **Uprawnienia:** Monitoring transportów
+
+### Planista
+- **Login:** `planner`
+- **Hasło:** `planner123`
+- **Uprawnienia:** Planowanie tras
+
+## 5. Podstawowe funkcje
+
+### 🗺️ Planowanie tras
+1. Zaloguj się jako `planner`
+2. Przejdź do zakładki "Planowanie tras"
+3. Wybierz punkt początkowy i docelowy
+4. Wybierz zestawy transportowe
+5. Kliknij "Generuj trasę"
+
+### 📊 Panel operatora
+1. Zaloguj się jako `operator`
+2. Przejdź do zakładki "Panel operatora"
+3. Monitoruj aktywne transporty na mapie
+4. Reaguj na alerty w czasie rzeczywistym
+
+### 📈 Dashboard i raporty
+1. Zaloguj się jako `admin`
+2. Sprawdź kluczowe metryki na dashboard
+3. Generuj raporty w zakładce "Raporty"
+4. Eksportuj dane do PDF/Excel
+
+## 6. Rozwiązywanie problemów
+
+### Problemy z Google Maps
+```bash
+# Sprawdź czy API Key jest poprawny
+echo $REACT_APP_GOOGLE_MAPS_API_KEY
+
+# Sprawdź w Developer Tools czy są błędy 403/402
+# 403 = nieprawidłowe ograniczenia API
+# 402 = przekroczony limit płatności
+```
+
+### Problemy z instalacją
+```bash
+# Wyczyść cache npm
+npm cache clean --force
+
+# Usuń node_modules i zainstaluj ponownie
+rm -rf node_modules package-lock.json
+npm install
+
+# Sprawdź wersję Node.js (wymagana >= 16)
+node --version
+```
+
+### Problemy z Docker
+```bash
+# Sprawdź logi kontenerów
+docker-compose logs frontend
+docker-compose logs backend
+
+# Zrestartuj kontenery
+docker-compose restart
+
+# Przebuduj obrazy
+docker-compose build --no-cache
+```
+
+## 7. Przydatne komendy
+
+```bash
+# Development
+npm start              # Uruchom dev server
+npm test               # Uruchom testy
+npm run build          # Build produkcyjny
+npm run lint           # Sprawdź kod (ESLint)
+npm run format         # Sformatuj kod (Prettier)
+
+# Docker
+docker-compose up -d           # Uruchom w tle
+docker-compose down           # Zatrzymaj i usuń kontenery
+docker-compose logs -f        # Pokaż logi na żywo
+docker-compose exec frontend sh  # Wejdź do kontenera
+
+# Testy
+npm test                      # Tryb interaktywny
+npm run test:coverage        # Z coverage
+npm run test:ci              # Jeden przebieg (CI/CD)
+```
+
+## 8. Następne kroki
+
+Po uruchomieniu aplikacji:
+
+1. **Skonfiguruj dane testowe** - dodaj własne transporty i trasy
+2. **Przetestuj funkcjonalności** - sprawdź planowanie tras i monitoring
+3. **Dostosuj ustawienia** - skonfiguruj powiadomienia i preferencje
+4. **Przygotuj deployment** - skonfiguruj environment produkcyjny
+5. **Przeszkolenie zespołu** - zapoznaj użytkowników z systemem
+
+## 🆘 Potrzebujesz pomocy?
+
+- **Dokumentacja:** [README.md](README.md)
+- **Issues:** [GitHub Issues](https://github.com/your-org/military-logistics-system/issues)
+- **Email:** support@yourdomain.com
+- **Slack:** #military-logistics-support
+
+---
+
+**Gratulacje! 🎉**
+System Logistyki Militarnej jest gotowy do użycia. Sprawdź wszystkie funkcjonalności i dostosuj system do swoich potrzeb.
