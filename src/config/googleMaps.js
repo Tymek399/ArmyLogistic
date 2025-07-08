@@ -1,8 +1,8 @@
 import { Loader } from '@googlemaps/js-api-loader';
 
 // Konfiguracja Google Maps API
-export const GOOGLE_MAPS_CONFIG = {
-    apiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY || 'YOUR_API_KEY_HERE',
+export async const GOOGLE_MAPS_CONFIG = {
+    apiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY || 'AIzaSyDHi2BrjJLd5D0QR0tHTo9U-fzXv-IlWro',
     version: 'weekly',
     libraries: ['places', 'geometry', 'directions', 'visualization'],
     region: 'PL',
