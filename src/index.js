@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import App from './app/App';          // ← nowa lokalizacja App.jsx
+// import reportWebVitals from './reportWebVitals';  // ← na razie wyłączamy
+
 
 // Import konfiguracji dla Service Worker (opcjonalnie)
 // import * as serviceWorkerRegistration from './serviceWorkerRegistration';
@@ -184,18 +185,18 @@ function sendToAnalytics(metric) {
 }
 
 // Eksport funkcji do pomiarów wydajności
-reportWebVitals(sendToAnalytics);
+// reportWebVitals(sendToAnalytics);
 
 // Hot Module Replacement dla development
-if (process.env.NODE_ENV === 'development' && module.hot) {
-    module.hot.accept('./App', () => {
-        const NextApp = require('./App').default;
-        root.render(
-            <React.StrictMode>
-                <ErrorBoundary>
-                    <NextApp />
-                </ErrorBoundary>
-            </React.StrictMode>
-        );
-    });
-}
+//  if (process.env.NODE_ENV === 'development' && module.hot) {
+//     module.hot.accept('./App', () => {
+//         const NextApp = require('./App').default;
+//        root.render(
+//             <React.StrictMode>
+//                 <ErrorBoundary>
+//                     <NextApp />
+//                 </ErrorBoundary>
+//             </React.StrictMode>
+//         );
+//     });
+// }

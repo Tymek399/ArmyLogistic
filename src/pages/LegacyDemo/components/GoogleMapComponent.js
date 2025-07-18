@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
+import { useInfrastructure } from '../../../features/infrastructure/api/useInfrastructure';
 import {
     loadGoogleMaps,
     DEFAULT_MAP_OPTIONS,
@@ -40,69 +41,76 @@ const GoogleMapComponent = ({
         setMapZoom
     } = useStore();
 
+       if (infraLoading) return <p className="text-center">Ładowanie infrastruktury…</p>;
+       const {
+        data: infrastructure = [],
+        isLoading: infraLoading,
+        error: infraError
+   } = useInfrastructure();
+
     // Dane infrastruktury Polski
-    const polishInfrastructure = [
-        {
-            id: 1,
-            name: 'Most Łazienkowski',
-            type: 'bridge',
-            coordinates: { lat: 52.2156, lng: 21.0348 },
-            maxWeight: 42000,
-            maxHeight: null,
-            road: 'Trasa Łazienkowska',
-            status: 'active'
-        },
-        {
-            id: 2,
-            name: 'Most Północny',
-            type: 'bridge',
-            coordinates: { lat: 52.2693, lng: 20.9863 },
-            maxWeight: 40000,
-            maxHeight: null,
-            road: 'S7/S8',
-            status: 'active'
-        },
-        {
-            id: 3,
-            name: 'Tunel pod Martwą Wisłą',
-            type: 'tunnel',
-            coordinates: { lat: 54.3611, lng: 18.6897 },
-            maxWeight: null,
-            maxHeight: 420,
-            road: 'S7',
-            status: 'active'
-        },
-        {
-            id: 4,
-            name: 'Most Rędziński',
-            type: 'bridge',
-            coordinates: { lat: 51.0985, lng: 17.0843 },
-            maxWeight: 44000,
-            maxHeight: null,
-            road: 'A8/S8',
-            status: 'active'
-        },
-        {
-            id: 5,
-            name: 'Tunel Południowej Obwodnicy',
-            type: 'tunnel',
-            coordinates: { lat: 50.2467, lng: 19.0048 },
-            maxWeight: null,
-            maxHeight: 350,
-            road: 'A4',
-            status: 'active'
-        },
-        {
-            id: 6,
-            name: 'Most na Warcie (A2)',
-            type: 'bridge',
-            coordinates: { lat: 52.3789, lng: 16.8437 },
-            maxWeight: 45000,
-            maxHeight: null,
-            road: 'A2',
-            status: 'active'
-        }
-    ];
+    // const polishInfrastructure = [
+    //     {
+    //         id: 1,
+    //         name: 'Most Łazienkowski',
+    //         type: 'bridge',
+    //         coordinates: { lat: 52.2156, lng: 21.0348 },
+    //         maxWeight: 42000,
+    //         maxHeight: null,
+    //         road: 'Trasa Łazienkowska',
+    //         status: 'active'
+    //     },
+    //     {
+    //         id: 2,
+    //         name: 'Most Północny',
+    //         type: 'bridge',
+    //         coordinates: { lat: 52.2693, lng: 20.9863 },
+    //         maxWeight: 40000,
+    //         maxHeight: null,
+    //         road: 'S7/S8',
+    //         status: 'active'
+    //     },
+    //     {
+    //         id: 3,
+    //         name: 'Tunel pod Martwą Wisłą',
+    //         type: 'tunnel',
+    //         coordinates: { lat: 54.3611, lng: 18.6897 },
+    //         maxWeight: null,
+    //         maxHeight: 420,
+    //         road: 'S7',
+    //         status: 'active'
+    //     },
+    //     {
+    //         id: 4,
+    //         name: 'Most Rędziński',
+    //         type: 'bridge',
+    //         coordinates: { lat: 51.0985, lng: 17.0843 },
+    //         maxWeight: 44000,
+    //         maxHeight: null,
+    //         road: 'A8/S8',
+    //         status: 'active'
+    //     },
+    //     {
+    //         id: 5,
+    //         name: 'Tunel Południowej Obwodnicy',
+    //         type: 'tunnel',
+    //         coordinates: { lat: 50.2467, lng: 19.0048 },
+    //         maxWeight: null,
+    //         maxHeight: 350,
+    //         road: 'A4',
+    //         status: 'active'
+    //     },
+    //     {
+    //         id: 6,
+    //         name: 'Most na Warcie (A2)',
+    //         type: 'bridge',
+    //         coordinates: { lat: 52.3789, lng: 16.8437 },
+    //         maxWeight: 45000,
+    //         maxHeight: null,
+    //         road: 'A2',
+    //         status: 'active'
+    //     }
+    // ];
 
     // Inicjalizacja mapy
     useEffect(() => {
@@ -293,7 +301,7 @@ const GoogleMapComponent = ({
         });
 
         // Dodaj markery infrastruktury
-        polishInfrastructure.forEach(infra => {
+        infrastructure.forEach(infra => {
             const markerId = `infra_${infra.id}`;
 
             const icon = infra.type === 'bridge' ? MARKER_ICONS.bridge : MARKER_ICONS.tunnel;
@@ -468,6 +476,9 @@ const GoogleMapComponent = ({
 // Hook do używania mapy w innych komponentach
 export const useMapActions = () => {
     const mapComponentRef = useRef();
+
+ 
+
 
     return {
         drawRoute: mapComponentRef.current?.drawRoute,
